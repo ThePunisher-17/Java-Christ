@@ -1,4 +1,4 @@
-public class SharaTrade {
+public class ShareTrade {
     static int maxProfit = 0;
 
     static int findMaxProfit(int[] prices) 
@@ -39,9 +39,9 @@ public class SharaTrade {
     public static void main(String[] args) 
     {
         int[] prices1 = { 10, 22, 5, 75, 65, 80 };
-        System.out.println("Max Profit: " + SharaTrade.findMaxProfit(prices1));
+        System.out.println("Max Profit: " + ShareTrade.findMaxProfit(prices1));
 
         int[] prices2 = { 2, 30, 15, 10, 8, 25, 80 };
-        System.out.println("Max Profit: " + SharaTrade.findMaxProfit(prices2));
+        System.out.println("Max Profit: " + ShareTrade.findMaxProfit(prices2));
     }
 }
