@@ -38,10 +38,13 @@ public class ShareTrade {
 
     public static void main(String[] args) 
     {
-        int[] prices1 = { 10, 22, 5, 75, 65, 80 };
-        System.out.println("Max Profit: " + ShareTrade.findMaxProfit(prices1));
+        // int[] prices1 = { 10, 22, 5, 75, 65, 80 };
+        // System.out.println("Max Profit: " + ShareTrade.findMaxProfit(prices1));
 
-        int[] prices2 = { 2, 30, 15, 10, 8, 25, 80 };
-        System.out.println("Max Profit: " + ShareTrade.findMaxProfit(prices2));
+        // int[] prices2 = { 2, 30, 15, 10, 8, 25, 80 };
+        // System.out.println("Max Profit: " + ShareTrade.findMaxProfit(prices2));
+
+        int[] prices3 = { 10, 30, 15, 10, 8, 25, 80 };
+        System.out.println("Max Profit: " + ShareTrade.findMaxProfit(prices3));
     }
 }
