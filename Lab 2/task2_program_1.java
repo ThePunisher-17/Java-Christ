@@ -32,8 +32,6 @@ public class task2_program_1 {
             // System.out.println(dict);
         }
         
-        //sorting the keys based on values and storing it into the integer array
-
         Enumeration<Integer> keys2 = dict.keys();
         int[] keys_array = new int[dict.size()];
         int [] values_array = new int[dict.size()];
@@ -48,7 +46,6 @@ public class task2_program_1 {
             i++;
         }
 
-        //sorting the keys based on values
         for (int j = 0; j < keys_array.length - 1; j++)
         {
             for (int l = j + 1; l < keys_array.length; l++)
@@ -74,6 +71,6 @@ public class task2_program_1 {
 
     public static void main(String[] args) 
     {
-        task2_program_1.initaite_arr(6);
+        task2_program_1.initaite_arr(2);
     }
 }

@@ -3,21 +3,30 @@ class Employee {
     private int employeeId;
     private String employeeName;
     private String designation;
-    //constructor
+
     public Employee(int employeeId, String employeeName, String designation) {
         this.employeeId = employeeId;
         this.employeeName = employeeName;
         this.designation = designation;
     }
 
-    //getters for Employee attributes
-    public int getEmployeeId() { return employeeId; }
-    public String getEmployeeName() { return employeeName; }
-    public String getDesignation() { return designation; }
+    
+    public int getEmployeeId() {
+        return employeeId;
+    }
 
-    //default bonus calculation to be overridden
-    public double calculateBonus() { return 0; }
-    //display basic employee details
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public String getDesignation() {
+        return designation;
+    }
+
+    public double calculateBonus() {
+        return 0;
+    }
+
     public void displayInfo() {
         System.out.println("Employee ID: " + employeeId);
         System.out.println("Employee Name: " + employeeName);
@@ -25,7 +34,6 @@ class Employee {
     }
 }
 
-//derived class:HourlyEmployee
 class HourlyEmployee extends Employee {
     private double hourlyRate;
     private int hoursWorked;
@@ -36,9 +44,14 @@ class HourlyEmployee extends Employee {
         this.hoursWorked = hoursWorked >= 0 ? hoursWorked : 0;
     }
 
-    public double calculateWeeklySalary() { return hourlyRate * hoursWorked; }
+    public double calculateWeeklySalary() {
+        return hourlyRate * hoursWorked;
+    }
+
     @Override
-    public double calculateBonus() { return calculateWeeklySalary() * 0.1; }
+    public double calculateBonus() {
+        return calculateWeeklySalary() * 0.1;
+    }
 
     @Override
     public void displayInfo() {
@@ -51,16 +64,23 @@ class HourlyEmployee extends Employee {
     }
 }
 
-//derived class:SalariedEmployee
 class SalariedEmployee extends Employee {
     private double monthlySalary;
+
     public SalariedEmployee(int employeeId, String employeeName, String designation, double monthlySalary) {
         super(employeeId, employeeName, designation);
         this.monthlySalary = monthlySalary > 0 ? monthlySalary : 0;
     }
-    public double calculateWeeklySalary() { return monthlySalary / 4; }
+
+    public double calculateWeeklySalary() {
+        return monthlySalary / 4;
+    }
+
     @Override
-    public double calculateBonus() { return calculateWeeklySalary() * 0.2; }
+    public double calculateBonus() {
+        return calculateWeeklySalary() * 0.2;
+    }
+
     @Override
     public void displayInfo() {
         System.out.println("Salaried Employee Details:");
@@ -71,10 +91,11 @@ class SalariedEmployee extends Employee {
     }
 }
 
-//further Derived class:ExecutiveEmployee
 class ExecutiveEmployee extends SalariedEmployee {
     private double bonusPercentage;
-    public ExecutiveEmployee(int employeeId, String employeeName, String designation, double monthlySalary, double bonusPercentage) {
+
+    public ExecutiveEmployee(int employeeId, String employeeName, String designation, double monthlySalary,
+            double bonusPercentage) {
         super(employeeId, employeeName, designation, monthlySalary);
         this.bonusPercentage = (bonusPercentage >= 0 && bonusPercentage <= 100) ? bonusPercentage : 0;
     }
@@ -95,17 +116,15 @@ class ExecutiveEmployee extends SalariedEmployee {
         System.out.printf("Bonus Percentage: %.2f%n", bonusPercentage);
         System.out.printf("Annual Bonus: %.2f%n", calculateBonus());
     }
-    
-    //getter for monthly salary to use in display info
+
     public double getMonthlySalary() {
         return super.calculateWeeklySalary() * 4;
     }
 }
 
-//main class to test the payroll system
 public class PayrollSystem {
     public static void main(String[] args) {
-        //create and display each employee's information
+        // create and display each employee's information
         new HourlyEmployee(1, "Varma", "Teaching Assistant", 20.5, 40).displayInfo();
         new SalariedEmployee(2, "Dimple", "Lecturer", 4000).displayInfo();
         new ExecutiveEmployee(3, "Harsha", "Head of Department", 8000, 15).displayInfo();

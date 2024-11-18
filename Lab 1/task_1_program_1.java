@@ -78,5 +78,7 @@ public class task_1_program_1 {
         Scanner sc = new Scanner(System.in);
         long ccNumber = sc.nextLong();
         task_1_program_1 obj = new task_1_program_1(ccNumber);
+        sc.close(); 
+        
     }
 }

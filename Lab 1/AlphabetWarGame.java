@@ -81,13 +81,15 @@ public class AlphabetWarGame {
 
     public static void main(String[] args) {
 
-        AlphabetWarGame game1 = new AlphabetWarGame();
-        System.out.println(game1.AlphabetWar("z"));
-        System.out.println(game1.AlphabetWar("zdqmwpbs"));
-        System.out.println(game1.AlphabetWar("wwwwwwz"));
+        // AlphabetWarGame game1 = new AlphabetWarGame();
+        // System.out.println(game1.AlphabetWar("z"));
+        // System.out.println(game1.AlphabetWar("zdqmwpbs"));
+        // System.out.println(game1.AlphabetWar("wwwwwwz"));
 
         AlphabetWarGame game2 = new AlphabetWarGame(2, 1, 3, 5, 1, 2, 1, 7);
-        System.out.println(game2.AlphabetWar("z"));
-        System.out.println(game2.AlphabetWar("wwwwwwz"));
+        // System.out.println(game2.AlphabetWar("z"));
+        // System.out.println(game2.AlphabetWar("wwwwwwz"));
+        System.out.println(game2.AlphabetWar("zdqmwpbs"));
+
     }
 }
