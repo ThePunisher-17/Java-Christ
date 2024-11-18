@@ -1,7 +1,3 @@
-Here's a `README.md` file that you can use for your GitHub repository to describe the Java code you provided. I'll make sure it covers the purpose of the code, a description of the classes, how to use it, and any additional information that might be helpful for others reviewing or using the code.
-
----
-
 # Robber Simulation in Java
 
 ## Overview
