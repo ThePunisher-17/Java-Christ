@@ -44,6 +44,6 @@ public class CityBlockConservation extends RainySeasonConservation {
         CityBlockConservation cityBlockConservation = new CityBlockConservation();
 
         
-        System.out.println("Trapped water: " + cityBlockConservation.calculateTrappedWater(new int[] { 5, 0, 0, 2, 0, 4 }));
+        System.out.println("Trapped water: " + cityBlockConservation.calculateTrappedWater(new int[] { 5, 0, 6, 2, 0, 4 }));
     }
 }

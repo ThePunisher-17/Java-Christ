@@ -9,16 +9,21 @@ public class Bank implements BankInterface {
     float interestRate = 0;
     float balance =0;
 
+    @Override
     public float getBalance() {
         return balance;
     }
+    @Override
     public float getInterestRate() {
         return interestRate;
     }
 
+    @Override
     public void setBalance(float balance) {
         this.balance = balance;
     }
+
+    @Override
     public void setInterestRate(float interestRate) {
         this.interestRate = interestRate;
     }

@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 abstract class Robber {
     // Abstract method
@@ -11,7 +11,7 @@ abstract class Robber {
 
     public abstract int SquareHouse(int[] houses);
 
-    public abstract int MultiHouseBuilding(int[] houses);
+    public abstract int MultiHouseBuilding(int[][] houses, ArrayList<String> types);
 
     // Default method
     public void MachineLearning() {
@@ -65,12 +65,25 @@ class JAVAProfessionalRobber extends Robber {
     }
 
     @Override
-    public int MultiHouseBuilding(int[] houses) {
-        return RowHouses(houses); 
+    public int MultiHouseBuilding(int[][] houses, ArrayList<String> types)
+     {
+        int maxProft = 0;
+        for(int i = 0; i< types.size(); i++){
+            if (types.get(i).equalsIgnoreCase("rowhouse")){
+                maxProft += RowHouses(houses[i]);
+            }
+            else if (types.get(i).equalsIgnoreCase("squrarehouse")){
+                maxProft += SquareHouse(houses[i]);
+            }
+            else if (types.get(i).equalsIgnoreCase("roundhouse")){
+                maxProft += RoundHouses(houses[i]);
+            }
+        }
+        return maxProft;
     }
 }
 
-public class Rober {
+public class RoberAdv  {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         JAVAProfessionalRobber robber = new JAVAProfessionalRobber();
@@ -87,9 +100,47 @@ public class Rober {
             System.out.println("2. Round Houses");
             System.out.println("3. Square House");
             System.out.println("4. Multi-House Building");
-            System.out.println("5. Exit");
+            System.out.println("5. Exit"); 
 
+            ArrayList<String> typesOfHouse = new ArrayList<String>();
             int choice = scanner.nextInt();
+            int maxMoney = 0;
+            if(choice ==4){
+                System.out.println("Enter the types of houses:");
+                int types = scanner.nextInt();
+
+                for(int i = 0 ; i< types; i++){
+                    System.out.println("Enter 1 for rowhouse, 2 for squrarehouse, 3 for roundhouse");
+                    switch (scanner.nextInt()) {
+                        case 1:
+                            typesOfHouse.add("rowhouse");
+                            break;
+                        case 2:
+                            typesOfHouse.add("squrarehouse");
+                            break;
+                        case 3:
+                            typesOfHouse.add("roundhouse");
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                
+                System.out.println("Enter number of houses in each type:");
+                int no = scanner.nextInt();
+                int[][] houses = new int[types][no];
+                System.out.println("Enter the money in each house:");
+                for (int i = 0; i < types; i++) {
+                    System.out.println("Next type:");
+                    for (int j = 0; j < no; j++) {
+                        houses[i][j] = scanner.nextInt();
+                    } 
+                }
+                maxMoney = robber.MultiHouseBuilding(houses, typesOfHouse);
+                System.out.println("Max money robbed from Multi-House Building: " + maxMoney);
+                continue;
+            }
 
             if (choice == 5) {
                 System.out.println("Exiting program.");
@@ -103,8 +154,7 @@ public class Rober {
             for (int i = 0; i < n; i++) {
                 houses[i] = scanner.nextInt();
             }
-
-            int maxMoney = 0;
+            maxMoney = 0;
             switch (choice) {
                 case 1:
                     maxMoney = robber.RowHouses(houses);
@@ -118,10 +168,10 @@ public class Rober {
                     maxMoney = robber.SquareHouse(houses);
                     System.out.println("Max money robbed from Square House: " + maxMoney);
                     break;
-                case 4:
-                    maxMoney = robber.MultiHouseBuilding(houses);
-                    System.out.println("Max money robbed from Multi-House Building: " + maxMoney);
-                    break;
+                // case 4:
+                //     maxMoney = robber.MultiHouseBuilding(houses);
+                //     System.out.println("Max money robbed from Multi-House Building: " + maxMoney);
+                //     break;
                 default:
                     System.out.println("Invalid choice, please try again.");
             }
