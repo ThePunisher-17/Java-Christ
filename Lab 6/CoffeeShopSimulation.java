@@ -1,5 +1,4 @@
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 class CoffeeCounter {
     private final int MAX_CAPACITY = 3;
