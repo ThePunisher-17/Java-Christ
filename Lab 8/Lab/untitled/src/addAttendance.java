@@ -14,6 +14,8 @@ public class addAttendance extends JFrame {
     private JButton deleteButton;
     private JTable attendanceTable;
     private JPanel MainPanel;
+    private JButton getStatsButton;
+    private JTable table2;
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
@@ -81,6 +83,8 @@ public class addAttendance extends JFrame {
 
     public addAttendance() {
         populateTable(attendanceTable);
+        table2.setVisible(false);
+
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -225,13 +229,57 @@ public class addAttendance extends JFrame {
                 }
             }
         });
+        getStatsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    openNewFrame();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
+
+    private void openNewFrame() throws SQLException {
+
+        if(table2.isVisible()==false){
+            table2.setVisible(true);
+        try (Connection c = DriverManager.getConnection(URL, USER, PASSWORD)){
+            CallableStatement callableStatement = c.prepareCall("SELECT Country, COUNT(*) AS Count FROM Attendance GROUP BY Country;");
+            DefaultTableModel model = (DefaultTableModel) table2.getModel();
+            ResultSet resultSet = callableStatement.executeQuery();
+            ResultSetMetaData metaData = resultSet.getMetaData();
+
+            // Get column names
+            int columnCount = metaData.getColumnCount();
+            for (int i = 1; i <= columnCount; i++) {
+                model.addColumn(metaData.getColumnName(i));
+            }
+
+            // Get row data
+            while (resultSet.next()) {
+                Object[] row = new Object[columnCount];
+                for (int i = 1; i <= columnCount; i++) {
+                    row[i - 1] = resultSet.getObject(i);
+                }
+                model.addRow(row);
+            }
+        }
+        }
+        else{
+                table2.setVisible(false);
+        }
+    }
+
     public static void main(String[] args) {
 
         addAttendance frame = new addAttendance();
         frame.setContentPane(frame.MainPanel);
         frame.setTitle("Attendance");
         frame.setSize(800, 600);
+
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
